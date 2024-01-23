@@ -50,7 +50,7 @@ RUN cd /var/www/html &&  composer install --no-plugins --no-scripts
 RUN chmod -R 777 /var/www/html/storage /var/www/html/bootstrap
 
 # Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
 RUN apt-get install -y nodejs
 
 # Install NPM Packages
