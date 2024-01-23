@@ -1,7 +1,6 @@
-# Utilisez l'image PHP officielle avec Apache
 FROM php:7.4-apache
 
-# Installez git, unzip, zip, et les dépendances nécessaires pour les extensions PHP
+# Installez les dépendances nécessaires pour les extensions PHP
 RUN apt-get update && apt-get install -y \
         libonig-dev \
         libcurl4-openssl-dev \
@@ -11,15 +10,22 @@ RUN apt-get update && apt-get install -y \
         libjpeg-dev \
         libzip-dev \
         libgd-dev \
+        libexif-dev \
+        libpq-dev \      # Ajoutez ceci si vous avez également besoin de PostgreSQL
+        default-mysql-client \
         git \
         unzip \
         zip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Installez les extensions PHP
+# Installez les extensions PHP pour MySQL
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+# Installez d'autres extensions PHP comme précédemment
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install bcmath ctype fileinfo json mbstring pdo xml tokenizer curl gd exif zip
+
 
 RUN docker-php-ext-install bcmath ctype fileinfo json mbstring pdo xml tokenizer curl gd
 
