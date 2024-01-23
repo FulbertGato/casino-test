@@ -1,7 +1,22 @@
-# Use PHP 7.4 with Apache
 FROM php:7.4-apache
 
-# Install PHP Extensions
+# Installez les dépendances nécessaires pour les extensions PHP
+RUN apt-get update && apt-get install -y \
+        libonig-dev \
+        libcurl4-openssl-dev \
+        libxml2-dev \
+        libpng-dev \
+        libfreetype6-dev \
+        libjpeg-dev \
+        libzip-dev \
+        libgd-dev \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installez les extensions PHP
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install bcmath ctype fileinfo json mbstring pdo xml tokenizer curl gd
+
 RUN docker-php-ext-install bcmath ctype fileinfo json mbstring pdo xml tokenizer curl gd
 
 # Enable Apache Modules
