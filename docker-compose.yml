@@ -1,0 +1,59 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      DB_HOST: db
+      DB_DATABASE: casino2024
+      DB_USERNAME: root
+      DB_PASSWORD: bX3rT3cU2024
+      APP_NAME: Laravel
+      APP_ENV: local
+      APP_KEY: base64:GN5rTLVvx3r9RQNDaqO0xQbh+tWjt+6snSKVwU5Habs=
+      APP_DEBUG: true
+      APP_INV: production
+      APP_URL: https://money1x.ru
+      LOG_CHANNEL: daily
+      DB_CONNECTION: mysql
+      DB_PORT: 3306
+      BROADCAST_DRIVER: pusher
+      CACHE_DRIVER: file
+      QUEUE_CONNECTION: sync
+      SESSION_DRIVER: file
+      SESSION_LIFETIME: 120
+      REDIS_HOST: 127.0.0.1
+      REDIS_PASSWORD: null
+      REDIS_PORT: 6379
+      MAIL_MAILER: smtp
+      MAIL_HOST: smtp.yandex.ru
+      MAIL_PORT: 465
+      MAIL_USERNAME: kondrik228@yandex.ru
+      MAIL_PASSWORD: null
+      MAIL_ENCRYPTION: ssl
+      MAIL_FROM_ADDRESS: support@bankwin.ru
+      MAIL_FROM_NAME: "${APP_NAME}"
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: bX3rT3cU2024
+      MYSQL_DATABASE: casino2024
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: db
+    ports:
+      - "8080:80"
+
+volumes:
+  db_data:
