@@ -1,3 +1,4 @@
+# Utilisez l'image PHP officielle avec Apache
 FROM php:7.4-apache
 
 # Installez les dépendances nécessaires pour les extensions PHP
@@ -10,12 +11,13 @@ RUN apt-get update && apt-get install -y \
         libjpeg-dev \
         libzip-dev \
         libgd-dev \
+        libexif-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Installez les extensions PHP
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install bcmath ctype fileinfo json mbstring pdo xml tokenizer curl gd
+    && docker-php-ext-install bcmath ctype fileinfo json mbstring pdo xml tokenizer curl gd exif
 
 RUN docker-php-ext-install bcmath ctype fileinfo json mbstring pdo xml tokenizer curl gd
 

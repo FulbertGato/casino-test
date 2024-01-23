@@ -36,7 +36,7 @@ services:
       MAIL_PASSWORD: null
       MAIL_ENCRYPTION: ssl
       MAIL_FROM_ADDRESS: support@bankwin.ru
-      MAIL_FROM_NAME: "${APP_NAME}"
+      MAIL_FROM_NAME: "LARAVEL"
 
   db:
     image: mysql:5.7
