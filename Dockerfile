@@ -43,8 +43,7 @@ COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
 # Copy source code (Assuming your source code is in the current directory)
 COPY . /var/www/html
 
-#composer install
-RUN cd /var/www/html &&  composer install --no-plugins --no-scripts
+
 
 # Set Permissions
 RUN chmod -R 777 /var/www/html/storage /var/www/html/bootstrap
