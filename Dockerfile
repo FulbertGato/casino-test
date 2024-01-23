@@ -24,7 +24,7 @@ COPY ./000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY . /var/www/html
 
 #composer install
-RUN composer install
+RUN cd /var/www/html &&  composer install
 
 # Set Permissions
 RUN chmod -R 777 /var/www/html/storage /var/www/html/bootstrap
