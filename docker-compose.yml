@@ -8,7 +8,7 @@ services:
     volumes:
       - .:/var/www/html
     environment:
-      DB_HOST: db
+      DB_HOST: 94.228.169.159
       DB_DATABASE: casino2024
       DB_USERNAME: root
       DB_PASSWORD: bX3rT3cU2024
@@ -20,7 +20,7 @@ services:
       APP_URL: https://money1x.ru
       LOG_CHANNEL: daily
       DB_CONNECTION: mysql
-      DB_PORT: 3306
+      DB_PORT: 3307
       BROADCAST_DRIVER: pusher
       CACHE_DRIVER: file
       QUEUE_CONNECTION: sync
